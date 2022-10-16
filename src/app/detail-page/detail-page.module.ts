@@ -1,18 +1,18 @@
 import { NgModule } from '@angular/core';
-import {HomePageComponent} from "./home-page.component";
-import {HomePageRoutingModule} from "./home-page-routing.module";
 import {CommonModule} from "@angular/common";
 import {FormsModule} from "@angular/forms";
 import {NgxPaginationModule} from "ngx-pagination";
-import {SearchPipe} from "../search.pipe";
+import {DetailPageComponent} from "./detail-page.component";
+import {DetailPageRoutingModule} from "./detail-page-routing.module";
+import {ActivatedRoute} from "@angular/router";
 
 @NgModule({
-  declarations: [
-    HomePageComponent,
-    SearchPipe
-  ],
-  imports: [HomePageRoutingModule, CommonModule, FormsModule, NgxPaginationModule],
+  declarations: [DetailPageComponent],
+  imports: [DetailPageRoutingModule, CommonModule, FormsModule, NgxPaginationModule],
   providers: [],
-  bootstrap: [HomePageComponent]
+  bootstrap: [DetailPageComponent]
 })
-export class HomePageModule { }
+export class DetailPageModule {
+
+
+}

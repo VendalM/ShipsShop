@@ -1,48 +1,25 @@
-<div class="home-page-cnt">
-<div class="home-page-main-block">
-  <h2 class="home-page-title">SpaceX Ships</h2>
-  <div>
-    <div *ngFor="
-          let post of POSTS | search : filter
-            | paginate
-              : {
-                  itemsPerPage: tableSize,
-                  currentPage: page,
-                  totalItems: count
-                };
-          let i = index">
-      <div class="home-page-sail-title">
-    <p class="sail-title">{{post.name}}</p>
-    <img alt="icon" src="assets/img/icon.svg">
-      </div>
-      <div class="home-page-sail-info">
-      <p>тип</p>
-      <p class="sail-info-link">{{post.type}}</p>
-      <p>порт</p>
-      <p class="sail-info-link">{{post.port}}</p>
-      </div>
-    </div>
+<div class="detail-cnt">
+  <div class="detail-page-back-block">
+  <img alt="icon-back" routerLink="/home" src="assets/img/icon%20(1).svg">
+    <p routerLink="/home" class="link-back">Вернуться</p>
   </div>
-  <pagination-controls
-    previousLabel=""
-    nextLabel=""
-    (pageChange)="onTableDataChange($event)"
-  >
-  </pagination-controls>
-</div>
-<div class="home-page-nav-block">
-  <p>Фильтры</p>
-  <input class="input-name-filter" [(ngModel)]="filter" (ngModelChange)="filterByName()" placeholder="Название">
-  <p class="search-point-port">Порт</p>
-  <p class="search-point-number">Выбраны:</p>
-  <div *ngFor="let item of ports; let i = index"  class="types-input">
-      <input id="{{i}}" (click)="filterPoint($event)" type="checkbox" >{{item}}
+<div *ngFor="let item of ship">
+  <h2>{{item.name}}</h2>
+  <div class="detail-page-sail-info">
+    <p>Тип</p>
+    <p class="sail-info-link">{{item.type}}</p>
+    <p>Порт</p>
+    <p class="sail-info-link">{{item.port}}</p>
   </div>
-  <p class="search-point-type">Типы</p>
-  <div *ngFor="let item of types; let i = index" >
-    <input id="{{i}}-radio" (click)="filterTypes($event)" value="{{item}}" name="search-point-type" type="radio" >{{item}}
+  <div class="detail-page-sail-info">
+    <p>Вес</p>
+    <p class="sail-info-link">{{item.weight}}</p>
+    <p>Год</p>
+    <p class="sail-info-link">{{item.year}}</p>
+  </div>
+  <div class="mission-block">
+    <p class="detail-page-mission">Миссия</p>
+    <p class="detail-page-mission-txt">{{item.mission}}</p>
   </div>
 </div>
 </div>
-
-
