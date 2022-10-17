@@ -78,14 +78,25 @@ export class HomePageComponent {
 
   filterPoint(event: any): any{
     if(event.target.checked){
-      this.POSTS = this.POSTS.filter( (ships: { port: string | any[]; }) => {
-        return ships?.port?.includes(event.path[1].outerText)
+      if (!this.filterCheckbox.includes(event.path[1].outerText)) {
+        this.filterCheckbox.push(event.path[1].outerText);
+      }
+      for (let i = 0; this.filterCheckbox.length > i; i++ ){
+        this.postService.getAllPosts().subscribe(
+          (response) => {
+            this.POSTS = response.filter( (ships: { port: string | any[]; }) => {
+          return ships?.port?.includes(this.filterCheckbox[i])
+        })
       })
-      this.page = event;
-    } else {
+        this.page = event;
+      }} else {
       this.fetchPosts();
+      if (this.filterCheckbox.includes(event.path[1].outerText)) {
+       this.filterCheckbox = this.filterCheckbox.filter((value) => {
+         return value !== event.path[1].outerText
+        })
+      }
     }
-    let el = document.querySelector('input')
   }
 
   filterTypes(event: any): any{
